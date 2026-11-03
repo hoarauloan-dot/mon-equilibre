@@ -8,5 +8,6 @@ async function all(store){const db=await open();return new Promise((resolve,reje
 async function put(store,item){const db=await open();return new Promise((resolve,reject)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).put(item);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
 async function remove(store,id){const db=await open();return new Promise((resolve,reject)=>{const tx=db.transaction(store,'readwrite');tx.objectStore(store).delete(id);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
 async function replace(snapshot){const db=await open();return new Promise((resolve,reject)=>{const tx=db.transaction(STORES,'readwrite');for(const store of STORES){const s=tx.objectStore(store);s.clear();for(const item of snapshot[store])s.put(item);}tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
+async function mergeHistory(additions){const db=await open();return new Promise((resolve,reject)=>{const names=['weights','goals','events','notes'];const tx=db.transaction(names,'readwrite');for(const store of names)for(const item of additions[store])tx.objectStore(store).add(item);tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
 async function snapshot(){const out={};for(const s of STORES)out[s]=await all(s);return out;}
-return {STORES,open,all,put,remove,replace,snapshot};})();
+return {STORES,open,all,put,remove,replace,mergeHistory,snapshot};})();

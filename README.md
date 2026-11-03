@@ -1,6 +1,6 @@
-# Mon Équilibre — V1 (1.0.0)
+# Mon Équilibre — V1.1 (1.1.0)
 
-Application personnelle PWA, 100 % statique, conçue pour fonctionner sur GitHub Pages. Pas de compte, de publicité, de serveur de données ni de bibliothèque externe. L'interface est en français. Les entrées sont vides au premier lancement.
+Application personnelle PWA, 100 % statique, conçue pour fonctionner sur GitHub Pages. Pas de compte, de publicité, de serveur de données ni de bibliothèque externe. L'interface est en français. Les entrées sont vides au premier lancement tant que le fichier historique privé n’a pas été importé.
 
 ## Installation sur GitHub Pages
 
@@ -71,3 +71,11 @@ Le service worker n'efface **que les caches dont le préfixe commence par** `mon
 `node --check app.js`, `node --check db.js`, `node --check sw.js` permettent de vérifier la syntaxe JS. Vous pouvez tester en local à l'aide d'un serveur (`python -m http.server 8000` puis `http://localhost:8000/`), mais une installation réelle nécessite HTTPS (fourni par GitHub Pages).
 
 Pour une nouvelle version, modifiez **uniquement** les fichiers nécessaires, incrémentez `VERSION` dans `sw.js` et vérifiez toutes les ressources dans `ASSETS`. N'incrémentez pas `DB_VERSION` dans `db.js` sans migration. Ne touchez pas aux projets Loan's Music / Loan's Fit.
+
+## Nouveauté V1.1 : historique privé
+
+Le bouton **Paramètres → Ajouter un historique privé** importe un JSON distinct du dépôt GitHub. Pour préserver la vie privée, le fichier `Historique-prive-Mon-Equilibre.json` n’est **pas inclus dans le ZIP public** et ne doit **jamais être ajouté sur GitHub**. Copiez-le seulement sur le téléphone concerné (Fichiers/Téléchargements), puis sélectionnez-le dans l’application. Une confirmation indique les nombres d’entrées, et l’import conserve les données existantes. Relancer l’import n’ajoute pas une deuxième copie des mêmes identifiants; les pesées identiques (date + valeur) sont aussi dédoublonnées.
+
+Seuls les relevés dont l’année est explicitement écrite ou directement ancrée dans la portion datée des captures sont inclus. Les autres informations sont consignées dans `Historique-a-verifier.txt` (fichier privé, hors GitHub) pour saisie après validation. Aucun objectif prévu n’est enregistré comme pesée réelle.
+
+**Mise à jour depuis la V1 :** remplacer les dix fichiers publics du dépôt par ceux du ZIP V1.1, sans effacer la PWA. `sw.js` passe à `v1.1`; le manifest, la base IndexedDB et l’identité de l’application restent inchangés.

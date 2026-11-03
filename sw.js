@@ -1,5 +1,5 @@
 /* Modifier VERSION lors de chaque publication de nouveaux fichiers (v2, v3...). */
-const VERSION='v1';
+const VERSION='v1.1';
 const PREFIX='mon-equilibre:'+self.registration.scope+':';
 const CACHE=PREFIX+VERSION;
 const ASSETS=['./','./index.html','./style.css','./app.js','./db.js','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
