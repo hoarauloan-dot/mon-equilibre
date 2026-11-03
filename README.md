@@ -1,3 +1,7 @@
+# Mon Équilibre — V1.2 (1.2.0)
+
+Correctif : stratégie réseau prioritaire avec cache hors ligne de secours. Aucun changement à IndexedDB ni aux données historiques. Si une ancienne version reste bloquée : dans Chrome sur PC, F12 → Application → Service workers → Unregister (ne pas cliquer sur Clear site data), puis recharger la page.
+
 # Mon Équilibre — V1.1 (1.1.0)
 
 Application personnelle PWA, 100 % statique, conçue pour fonctionner sur GitHub Pages. Pas de compte, de publicité, de serveur de données ni de bibliothèque externe. L'interface est en français. Les entrées sont vides au premier lancement tant que le fichier historique privé n’a pas été importé.
